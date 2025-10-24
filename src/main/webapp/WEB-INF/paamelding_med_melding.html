@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+	<link href="css/simple.css" rel="stylesheet" type="text/css" />
+	<script src="js/myscript.js" defer></script>  
+	<title>Påmelding</title>
+</head>
+
+<body id="root">
+	<h2>Påmelding</h2>
+	<p class="hidden" style="color:red;">Påmeldingsdetaljer er ugyldige</p>
+
+	<!-- Jeg har fjernet alt som har med form og input å gjøre,
+		 siden dette er pensum. Her får dere sette opp skjemaet
+		 selv. Lykke til.
+	-->
+	<form name="paamelding" action="/paamelding" method="post">
+		<label for="fornavn">Fornavn</label>
+		<input type="text" id="fornavn" name="fornavn" maxlength="20"
+			pattern="\s*\p{Lu}{1}\p{Ll}+((\s+|-)\p{Lu}{1}\p{Ll}+)*\s*" required>
+		<label for="etternavn">Etternavn</label>
+		<input type="text" id="etternavn" name="etternavn" maxlength="20"
+			pattern="\p{Lu}{1}\p{Ll}+(\p{Pd}\p{Lu}{1}\p{Ll}+)*" required>
+		<label for="mobil">Mobil (8 siffer)</label>
+		<input type="text" id="mobil" name="mobil" pattern="\d{8}" required>
+		<label for="passord">Passord</label>
+		<input type="password" id="passord" name="passord" minlength="8" required>
+		<label for="rpassord">Passord repetert</label>
+		<input type="password" id="rpassord" name="rpassord" minlength="8" required>
+		<p>Kjønn</p>
+		<div id="radio-kjonn" class="kjonn">
+			<input type="radio" id="mann" name="kjonn" value="mann">
+			<label for="mann">mann</label>
+			<input type="radio" id="kvinne" name="kjonn" value="kvinne">
+			<label for="kvinne">kvinne</label>
+		</div>
+		<input id="submit" type="submit" value="Meld meg på">
+	</form>
+
+
+</body>
+
+</html>
