@@ -10,6 +10,9 @@ public class ValideringTest {
         assertTrue(Validering.validerFornavn("Anne"));
         assertTrue(Validering.validerFornavn("Lars-Petter"));
         assertTrue(Validering.validerFornavn("Anne Marie"));
+        assertTrue(Validering.validerFornavn("Øystein"));
+        assertTrue(Validering.validerFornavn("Åse"));
+        assertTrue(Validering.validerFornavn("Ævar"));
     }
     
     @Test
@@ -19,12 +22,17 @@ public class ValideringTest {
         assertFalse(Validering.validerFornavn("AbcdefghijklmnopqrstuvwxyZ")); // For langt (>20)
         assertFalse(Validering.validerFornavn("")); // Tom streng
         assertFalse(Validering.validerFornavn(null)); // Null
+        assertFalse(Validering.validerFornavn("Anne-marie")); // liten bokstav etter bindestrek
+        assertFalse(Validering.validerFornavn("Anne Marie lars")); // liten bokstav etter mellomrom
     }
     
     @Test
     public void testGyldigEtternavn() {
         assertTrue(Validering.validerEtternavn("Hansen"));
         assertTrue(Validering.validerEtternavn("Monsen-Hagen"));
+        assertTrue(Validering.validerEtternavn("Ødegård"));
+        assertTrue(Validering.validerEtternavn("Åsen"));
+        assertTrue(Validering.validerEtternavn("Ærlig"));
     }
     
     @Test
@@ -33,6 +41,7 @@ public class ValideringTest {
         assertFalse(Validering.validerEtternavn("Hansen Larsen")); // Mellomrom ikke tillatt
         assertFalse(Validering.validerEtternavn("H")); // For kort
         assertFalse(Validering.validerEtternavn("")); // Tom streng
+        assertFalse(Validering.validerEtternavn("Hansen-larsen")); // liten bokstav etter bindestrek
     }
     
     @Test
@@ -89,6 +98,10 @@ public class ValideringTest {
         // Gyldig input
         assertTrue(Validering.validerAlt(
                 "Anne", "Hansen", "12345678", "passord123", "passord123", "kvinne"));
+        
+        // Gyldig med norske bokstaver
+        assertTrue(Validering.validerAlt(
+                "Øystein", "Ødegård", "12345678", "passord123", "passord123", "mann"));
         
         // Ugyldig fornavn
         assertFalse(Validering.validerAlt(
